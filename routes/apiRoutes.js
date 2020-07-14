@@ -1,18 +1,18 @@
 // JSON parse
-var noteData =require("../db/db.json")
-var moment = require("moment");
-
+var noteData =require("../db/db.json");
+var parsedData = JSON.stringify(noteData);
+var data = [];
 
 module.exports = function(app){
 
 app.get("/api/notes", function(req,res){
-res.json(JSON.parse(noteData));
+res.JSON.parse(noteData);
 })
 
 app.post("/api/notes" , function(req,res){
-    if(noteData.noteTitle.val !== "" && noteData.noteText.val !== ""){
-        noteData.push(req.body);
-        res.json(true);
+    if(noteData !== ""){
+       data.push(req.body);
+        res.json(req.body);
         
     }
     else {
