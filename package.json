@@ -1,0 +1,25 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt98h/Notetaker-Application.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/matt98h/Notetaker-Application/issues"
+  },
+  "homepage": "https://github.com/matt98h/Notetaker-Application#readme",
+  "description": ""
+}
