@@ -27,7 +27,10 @@ app.use(express.json());
 // ================================================================================
 
 require("./routes/apiRoutes")(app);
+app.use(express.static('public'));
 require("./routes/htmlRoutes")(app);
+
+
 
 
 

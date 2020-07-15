@@ -1,6 +1,8 @@
 // JSON parse
 var noteData =require("../db/db.json");
-var parsedData = JSON.stringify(noteData);
+const moment = require("moment");
+const { isMoment } = require("moment");
+
 var data = [];
 
 module.exports = function(app){
@@ -10,10 +12,14 @@ res.json(noteData);
 })
 
 app.post("/api/notes" , function(req,res){
+   var userData = JSON.parse
+   
+   
     if(noteData !== ""){
        noteData.push(req.body);
        
         res.json(noteData.concat());
+        noteData.id = isMoment();
         
     }
     else {
