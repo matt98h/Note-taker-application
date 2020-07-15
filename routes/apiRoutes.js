@@ -6,13 +6,14 @@ var data = [];
 module.exports = function(app){
 
 app.get("/api/notes", function(req,res){
-res.JSON.parse(noteData);
+res.json(noteData);
 })
 
 app.post("/api/notes" , function(req,res){
     if(noteData !== ""){
-       data.push(req.body);
-        res.json(req.body);
+       noteData.push(req.body);
+       
+        res.json(noteData.concat());
         
     }
     else {
