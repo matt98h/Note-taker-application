@@ -17,10 +17,10 @@ const getNotes = () => {
 };
 
 // A function for saving a note to the db
-const saveNote = (note) => {
+const saveNote = (notes) => {
   return $.ajax({
     url: "/api/notes",
-    data: note,
+    data: notes,
     method: "POST",
   });
 };
@@ -28,7 +28,7 @@ const saveNote = (note) => {
 // A function for deleting a note from the db
 const deleteNote = () => {
   return $.ajax({
-    url: "api/notes/" + id,
+    url: "api/notes/" + notes.id,
     method: "DELETE",
   });
 };
@@ -74,7 +74,7 @@ const handleNoteDelete = function (event) {
     activeNote = {};
   }
 
-  deleteNote(note.id).then(() => {
+  deleteNote(notes.id).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
