@@ -14,10 +14,10 @@ class Note {
 
         return this.connection.query(queryString,[columnName,values])
     }
-    delete(table, cols, value) {
-        const queryString = 'DELETE FROM ?? WHERE ??=?';
+    delete(value) {
+        const queryString = 'DELETE FROM notes WHERE notes.id=?';
 
-        return this.connection.query(queryString, [table, cols, value])
+        return this.connection.query(queryString, value)
     }
 }
 

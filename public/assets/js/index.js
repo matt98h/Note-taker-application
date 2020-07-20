@@ -17,10 +17,10 @@ const getNotes = () => {
 };
 
 // A function for saving a note to the db
-const saveNote = (notes) => {
+const saveNote = (note) => {
   return $.ajax({
     url: "/api/notes",
-    data: notes,
+    data: note,
     method: "POST",
   });
 };
@@ -28,7 +28,7 @@ const saveNote = (notes) => {
 // A function for deleting a note from the db
 const deleteNote = () => {
   return $.ajax({
-    url: "api/notes/" + notes.id,
+    url: "api/notes/" + activeNote.id ,
     method: "DELETE",
   });
 };
@@ -36,12 +36,12 @@ const deleteNote = () => {
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
-
+ 
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
-    $noteTitle.val(activeNote.title);
-    $noteText.val(activeNote.text);
+    $noteTitle.val(activeNote.note_title);
+    $noteText.val(activeNote.note);
   } else {
     $noteTitle.attr("readonly", false);
     $noteText.attr("readonly", false);
@@ -68,13 +68,17 @@ const handleNoteDelete = function (event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
 
+  
   const note = $(this).parent(".list-group-item").data();
+  
+  if (note.id >0) {
+    var activeNote = {};
+    activeNote.id = note.id;
+   
+   
+  }else throw err;
 
-  if (activeNote.id === note.id) {
-    activeNote = {};
-  }
-
-  deleteNote(notes.id).then(() => {
+  deleteNote(activeNote.id).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -104,10 +108,11 @@ const handleRenderSaveBtn = function () {
 
 // Render's the list of note titles
 const renderNoteList = (notes) => {
+  
   $noteList.empty();
 
   const noteListItems = [];
-
+  console.log(notes);
   // Returns jquery object for li with given text and delete button
   // unless withDeleteButton argument is provided as false
   const create$li = (text, withDeleteButton = true) => {
@@ -129,7 +134,7 @@ const renderNoteList = (notes) => {
   }
 
   notes.forEach((note) => {
-    const $li = create$li(note.title).data(note);
+    const $li = create$li(note.note_title).data(note);
     noteListItems.push($li);
   });
 
